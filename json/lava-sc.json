@@ -1,0 +1,178 @@
+[
+    {
+      "name": "Squid",
+      "weight": 1200,
+      "modifiers": ["Squid Hat"]
+    },
+    {
+      "name": "Night Squid",
+      "weight": 1100,
+      "modifiers": ["Squid Hat"]
+    },
+    {
+      "name": "Sea Walker",
+      "weight": 800,
+      "modifiers": []
+    },
+    {
+      "name": "Sea Guardian",
+      "weight": 600,
+      "modifiers": []
+    },
+    {
+      "name": "Sea Witch",
+      "weight": 700,
+      "modifiers": []
+    },
+    {
+      "name": "Sea Archer",
+      "weight": 550,
+      "modifiers": []
+    },
+    {
+      "name": "Rider of the Deep",
+      "weight": 400,
+      "modifiers": []
+    },
+    {
+      "name": "Catfish",
+      "weight": 250,
+      "modifiers": ["Rare Bait"]
+    },
+    {
+        "name": "Carrot King",
+        "weight": 160,
+        "modifiers": ["Carrot Bait"]
+    },
+    {
+      "name": "Sea Leech",
+      "weight": 160,
+      "modifiers": ["Rare Bait"]
+    },
+    {
+      "name": "Guardian Defender",
+      "weight": 130,
+      "modifiers": ["Rare Bait"]
+    },
+    {
+      "name": "Deep Sea Protector",
+      "weight": 88,
+      "modifiers": ["Rare Bait"]
+    },
+    {
+      "name": "Water Hydra",
+      "weight": 18,
+      "modifiers": ["Rare Bait"]
+    },
+    {
+      "name": "Sea Emperor",
+      "weight": 10,
+      "modifiers": ["Rare Bait"]
+    },
+    {
+      "name": "Agarimoo",
+      "weight": 950,
+      "modifiers": ["Chumcap Bucket"]
+    },
+    {
+      "name": "Oasis Sheep",
+      "weight": 700,
+      "modifiers": []
+    },
+    {
+      "name": "Oasis Rabbit",
+      "weight": 300,
+      "modifiers": ["Rare Bait"]
+    },
+    {
+      "name": "Water Worm",
+      "weight": 300,
+      "modifiers": ["Rare Bait"]
+    },
+    {
+      "name": "Poisoned Water Worm",
+      "weight": 300,
+      "modifiers": ["Rare Bait"]
+    },
+    {
+      "name": "Abyssal Miner",
+      "weight": 90,
+      "modifiers": ["Rare Bait"]
+    },
+    {
+      "name": "Scarecrow",
+      "weight": 1000,
+      "modifiers": ["Bat Pet", "Spooky Bait", "Spooky Hook Perk"]
+    },
+    {
+      "name": "Nightmare",
+      "weight": 550,
+      "modifiers": ["Bat Pet", "Spooky Bait", "Spooky Hook Perk"]
+    },
+    {
+      "name": "Werewolf",
+      "weight": 250,
+      "modifiers": ["Bat Pet", "Spooky Bait", "Spooky Hook Perk"]
+    },
+    {
+      "name": "Phantom Fisher",
+      "weight": 90,
+      "modifiers": ["Bat Pet", "Spooky Bait", "Spooky Hook Perk"]
+    },
+    {
+      "name": "Grim Reaper",
+      "weight": 25,
+      "modifiers": ["Bat Pet", "Spooky Bait", "Spooky Hook Perk"]
+    },
+    {
+      "name": "Frozen Steve",
+      "weight": 1100,
+      "modifiers": []
+    },
+    {
+      "name": "Frosty the Snowman",
+      "weight": 800,
+      "modifiers": []
+    },
+    {
+      "name": "Grinch",
+      "weight": 50,
+      "modifiers": []
+    },
+    {
+      "name": "Yeti",
+      "weight": 30,
+      "modifiers": []
+    },
+    {
+      "name": "Nutcracker",
+      "weight": 60,
+      "modifiers": []
+    },
+    {
+      "name": "Reindrake",
+      "weight": 5,
+      "modifiers": []
+    },
+    {
+      "name": "Nurse Shark",
+      "weight": 1120,
+      "modifiers": []
+    },
+    {
+      "name": "Blue Shark",
+      "weight": 560,
+      "modifiers": []
+    },
+    {
+      "name": "Tiger Shark",
+      "weight": 300,
+      "modifiers": []
+    },
+    {
+      "name": "Great White Shark",
+      "weight": 150,
+      "modifiers": []
+    }
+  ]
+  
