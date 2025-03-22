@@ -1,0 +1,228 @@
+[
+    {
+      "name": "Squid",
+      "weight": 1200,
+      "modifiers": ["Squid"]
+    },
+    {
+      "name": "Night Squid",
+      "weight": 1100,
+      "modifiers": ["Squid"]
+    },
+    {
+      "name": "Sea Walker",
+      "weight": 800,
+      "modifiers": []
+    },
+    {
+      "name": "Sea Guardian",
+      "weight": 600,
+      "modifiers": []
+    },
+    {
+      "name": "Sea Witch",
+      "weight": 700,
+      "modifiers": []
+    },
+    {
+      "name": "Sea Archer",
+      "weight": 550,
+      "modifiers": []
+    },
+    {
+      "name": "Rider of the Deep",
+      "weight": 400,
+      "modifiers": []
+    },
+    {
+      "name": "Catfish",
+      "weight": 250,
+      "modifiers": []
+    },
+    {
+        "name": "Carrot King",
+        "weight": 160,
+        "modifiers": ["Carrot"]
+    },
+    {
+      "name": "Sea Leech",
+      "weight": 160,
+      "modifiers": []
+    },
+    {
+      "name": "Guardian Defender",
+      "weight": 130,
+      "modifiers": []
+    },
+    {
+      "name": "Deep Sea Protector",
+      "weight": 88,
+      "modifiers": []
+    },
+    {
+      "name": "Water Hydra",
+      "weight": 18,
+      "modifiers": []
+    },
+    {
+      "name": "Sea Emperor",
+      "weight": 10,
+      "modifiers": []
+    },
+    {
+      "name": "Agarimoo",
+      "weight": 950,
+      "modifiers": []
+    },
+    {
+      "name": "Oasis Sheep",
+      "weight": 700,
+      "modifiers": []
+    },
+    {
+      "name": "Oasis Rabbit",
+      "weight": 300,
+      "modifiers": []
+    },
+    {
+      "name": "Water Worm",
+      "weight": 300,
+      "modifiers": ["Goblin"]
+    },
+    {
+      "name": "Poisoned Water Worm",
+      "weight": 300,
+      "modifiers": ["Goblin"]
+    },
+    {
+      "name": "Abyssal Miner",
+      "weight": 90,
+      "modifiers": ["Hollows"]
+    },
+    {
+      "name": "Scarecrow",
+      "weight": 1000,
+      "modifiers": ["Spooky"]
+    },
+    {
+      "name": "Nightmare",
+      "weight": 550,
+      "modifiers": ["Spooky"]
+    },
+    {
+      "name": "Werewolf",
+      "weight": 250,
+      "modifiers": ["Spooky"]
+    },
+    {
+      "name": "Phantom Fisher",
+      "weight": 90,
+      "modifiers": ["Spooky"]
+    },
+    {
+      "name": "Grim Reaper",
+      "weight": 25,
+      "modifiers": ["Spooky"]
+    },
+    {
+      "name": "Frozen Steve",
+      "weight": 1100,
+      "modifiers": ["Jerry"]
+    },
+    {
+      "name": "Frosty the Snowman",
+      "weight": 800,
+      "modifiers": ["Jerry"]
+    },
+    {
+      "name": "Grinch",
+      "weight": 50,
+      "modifiers": ["Jerry"]
+    },
+    {
+      "name": "Yeti",
+      "weight": 30,
+      "modifiers": ["Jerry"]
+    },
+    {
+      "name": "Nutcracker",
+      "weight": 60,
+      "modifiers": ["Jerry"]
+    },
+    {
+      "name": "Reindrake",
+      "weight": 6,
+      "modifiers": ["Jerry", "Mythic"]
+    },
+    {
+      "name": "Nurse Shark",
+      "weight": 1100,
+      "modifiers": ["Shark"]
+    },
+    {
+      "name": "Blue Shark",
+      "weight": 550,
+      "modifiers": ["Shark"]
+    },
+    {
+      "name": "Tiger Shark",
+      "weight": 300,
+      "modifiers": ["Shark"]
+    },
+    {
+      "name": "Great White Shark",
+      "weight": 150,
+      "modifiers": ["Shark"]
+    },
+    {
+      "name": "Frog Man",
+      "weight": 1000,
+      "modifiers": ["Hotspot"]
+    },
+    {
+      "name": "Snapping Turtle",
+      "weight": 250,
+      "modifiers": ["Hotspot"]
+    },
+    {
+      "name": "Blue Ringed Octopus",
+      "weight": 25,
+      "modifiers": ["Hotspot"]
+    },
+    {
+      "name": "Wiki Tiki",
+      "weight": 5,
+      "modifiers": ["Hotspot", "Mythic"]
+    },
+    {
+      "name": "Trash Gobbler",
+      "weight": 750,
+      "modifiers": ["Bayou"]
+    },
+    {
+      "name": "Dumpster Diver",
+      "weight": 500,
+      "modifiers": ["Bayou"]
+    },
+    {
+      "name": "Banshee",
+      "weight": 300,
+      "modifiers": ["Bayou"]
+    },
+    {
+      "name": "Bayou Sludge",
+      "weight": 100,
+      "modifiers": ["Bayou"]
+    },
+    {
+      "name": "Alligator",
+      "weight": 50,
+      "modifiers": ["Bayou"]
+    },
+    {
+      "name": "Titanoboa",
+      "weight": 10,
+      "modifiers": ["Bayou", "Mythic"]
+    }
+  ]
+  
