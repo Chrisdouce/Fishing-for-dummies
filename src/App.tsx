@@ -3,18 +3,12 @@ import { Box, Checkbox, Container, createTheme, CssBaseline, FormControl, FormCo
 import water from './assets/scc-data/water-sc.json';
 import lava from './assets/scc-data/lava-sc.json';
 import { useState } from "react";
-import { DataGrid } from "@mui/x-data-grid/DataGrid/DataGrid";
 
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
   },
 });
-
-const defaultProps = {
-  options: [],
-  getOptionLabel: (option: string) => option,
-};
 
 type SeaCreature = {
   "name": string,
@@ -33,10 +27,10 @@ function App() {
   const [chumcap, setChumcap] = useState(Boolean);
   const [spooky, setSpooky] = useState(Boolean);
   const [shark, setShark] = useState(Boolean);
-  const [spookyPerk, setSpookyPerk] = useState('');
-  const [icyHookPerk, setIcyHookPerk] = useState('');
-  const [drakePiperPerk, setDrakePiperPerk] = useState('');
-  const [sharkPerk, setSharkPerk] = useState('');
+  const [spookyPerk, _setSpookyPerk] = useState('');
+  const [icyHookPerk, _setIcyHookPerk] = useState('');
+  const [drakePiperPerk, _setDrakePiperPerk] = useState('');
+  const [sharkPerk, _setSharkPerk] = useState('');
 
   function calculateTotalWeights(): number {
     let totalWaterWeight = 0;
@@ -234,19 +228,19 @@ function App() {
         </Grid2>
         <FormLabel>Are you fishing with:</FormLabel>
         <Grid2 container spacing={2}>
-          <FormControlLabel control={<Checkbox />} onChange={(event, checked) => {
+          <FormControlLabel control={<Checkbox />} onChange={(_event, checked) => {
                 setEman(checked);
               }} label="Eman 9?" />
-          <FormControlLabel control={<Checkbox />} onChange={(event, checked) => {
+          <FormControlLabel control={<Checkbox />} onChange={(_event, checked) => {
                 setHotspot(checked);
               }}  label="A Hotspot?" />
-          <FormControlLabel control={<Checkbox />} onChange={(event, checked) => {
+          <FormControlLabel control={<Checkbox />} onChange={(_event, checked) => {
                 setChumcap(checked);
               }}  label="A Chumcap?" />
-          <FormControlLabel control={<Checkbox />} onChange={(event, checked) => {
+          <FormControlLabel control={<Checkbox />} onChange={(_event, checked) => {
                 setSpooky(checked);
               }}  label="Spooky Festival?" />
-          <FormControlLabel control={<Checkbox />} onChange={(event, checked) => {
+          <FormControlLabel control={<Checkbox />} onChange={(_event, checked) => {
                 setShark(checked);
               }}  label="Fishing Festival?" />
         </Grid2>
