@@ -7,12 +7,12 @@
     {
       "name": "Lava Blaze",
       "weight": 36,
-      "modifiers": ["Hollows"]
+      "modifiers": ["Magma"]
     },
     {
       "name": "Lava Pigman",
       "weight": 36,
-      "modifiers": ["Hollows"]
+      "modifiers": ["Magma"]
     },
     {
       "name": "Magma Slug",

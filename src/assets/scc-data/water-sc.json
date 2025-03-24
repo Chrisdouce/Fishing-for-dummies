@@ -7,7 +7,7 @@
     {
       "name": "Night Squid",
       "weight": 1100,
-      "modifiers": ["Squid"]
+      "modifiers": ["Squid", "Night"]
     },
     {
       "name": "Sea Walker",
@@ -72,17 +72,17 @@
     {
       "name": "Agarimoo",
       "weight": 950,
-      "modifiers": []
+      "modifiers": ["Chumcap"]
     },
     {
       "name": "Oasis Sheep",
       "weight": 700,
-      "modifiers": []
+      "modifiers": ["Oasis"]
     },
     {
       "name": "Oasis Rabbit",
       "weight": 300,
-      "modifiers": []
+      "modifiers": ["Oasis"]
     },
     {
       "name": "Water Worm",
