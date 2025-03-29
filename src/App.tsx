@@ -161,8 +161,25 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <Container sx={{ mt: 4 }}>
-        <Typography variant="h3" color="blue" sx={{pb:"20px"}}>Fishing For Dummies</Typography>
-        <FormLabel>Basic fishing information:</FormLabel>
+          <Typography
+          variant="h3"
+          sx={{
+            pb: "20px",
+            textTransform: "uppercase",
+            background: "linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet, red)", 
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundSize: "200% 100%",
+            animation: "chromaWave 5s linear infinite",
+            "@keyframes chromaWave": {
+              "0%": { backgroundPosition: "100% 50%" },
+              "100%": { backgroundPosition: "-100% 50%" },
+            },
+          }}
+        >
+          Fishing For Dummies
+        </Typography>
+        <FormLabel><strong>Basic fishing information:</strong></FormLabel>
         <Grid2 container spacing={2}>
           <FormControl sx={{ m: 1, minWidth: 120 }}>
             <InputLabel id="simple-location">Location</InputLabel>
@@ -268,7 +285,7 @@ function App() {
             </Select>
           </FormControl>
         </Grid2>
-        <FormLabel>Are you fishing with:</FormLabel>
+        <FormLabel><strong>Are you fishing with:</strong></FormLabel>
         <Grid2 container spacing={2}>
           <FormControlLabel control={<Checkbox />} onChange={(_event, checked) => {
                 setEman(checked);
@@ -289,8 +306,9 @@ function App() {
                 setSquid(checked);
               }}  label="Squid Hat?" />
         </Grid2>
-        <Box hidden={calculateTotalWaterWeights() == 0}>
-          <Typography variant="h4" color="rgb(0, 162, 255)">Water</Typography>
+        <hr style={{ margin: "20px 0", border: "1px solid rgba(255, 255, 255, 0.2)" }} />
+        <Box hidden={calculateTotalWaterWeights() == 0} sx={{ mt: 3 }}>
+          <Typography variant="h4" color="rgb(0, 162, 255)" sx={{pb: 1}}>Water</Typography>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
