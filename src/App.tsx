@@ -27,24 +27,29 @@ function App() {
   const [chumcap, setChumcap] = useState(Boolean);
   const [spooky, setSpooky] = useState(Boolean);
   const [shark, setShark] = useState(Boolean);
+  const [squid, setSquid] = useState(Boolean);
   const [spookyPerk, _setSpookyPerk] = useState('');
   const [icyHookPerk, _setIcyHookPerk] = useState('');
   const [drakePiperPerk, _setDrakePiperPerk] = useState('');
   const [sharkPerk, _setSharkPerk] = useState('');
 
-  function calculateTotalWeights(): number {
+  function calculateTotalWaterWeights(modifiers = true): number {
     let totalWaterWeight = 0;
-    let totalLavaWeight = 0;
     water.forEach(sc => {
-      totalWaterWeight += calculateWaterWeight(sc);
+      totalWaterWeight += calculateWaterWeight(sc, modifiers);
     });
-    lava.forEach(sc => {
-      totalLavaWeight += calculateLavaWeight(sc);
-    });
-    return totalWaterWeight > 0 ? totalWaterWeight : totalLavaWeight;
+    return totalWaterWeight;
   }
 
-  function calculateWaterWeight(sc: SeaCreature): number{
+  function calculateTotalLavaWeights(modifiers: boolean = true): number {
+    let totalLavaWeight = 0;
+    lava.forEach(sc => {
+      totalLavaWeight += calculateLavaWeight(sc, modifiers);
+    });
+    return totalLavaWeight;
+  }
+
+  function calculateWaterWeight(sc: SeaCreature, modify: boolean = true): number{
     let weight = sc.weight;
     const modifiers = new Set(sc.modifiers);
     if (
@@ -53,6 +58,7 @@ function App() {
         (modifiers.has("Goblin") && location !== "Goblin") ||
         (modifiers.has("Bayou") && location !== "Bayou") ||
         (modifiers.has("Jerry") && location !== "Jerry") ||
+        (modifiers.has("Quarry") && location !== "Quarry") ||
         (modifiers.has("Night") && bait !== "Dark") ||
         (modifiers.has("Carrot") && bait !== "Carrot") ||
         (modifiers.has("Chumcap") && !chumcap) ||
@@ -62,60 +68,94 @@ function App() {
         location == "Lava" ||
         location == "Magma"
     ) return 0;
-
-    if (modifiers.has("Hotspot")) {
-      if (bait === "Hotspot") weight += sc.weight * 1.5;
-      if (hook === "Hotspot") weight += sc.weight * 2;
-      if (pet === "Hermit") weight += sc.weight * 1.2;
-    }
-    if (modifiers.has("Spooky")) {
-      weight += sc.weight * Number(spookyPerk);
-      if (hook === "Phantom") weight += sc.weight * 2;
-      if (bait === "Spooky") weight += sc.weight * 1.15;
-    }
-    if(modifiers.has("Jerry")){
-      weight += sc.weight * Number(icyHookPerk);
-      if(sc.name === "Reindrake") weight += sc.weight * Number(drakePiperPerk);
-      if(bait === "Ice") weight += sc.weight * 1.15;
-      if(bait === "Frozen") weight += sc.weight * 1.35;
-      if(sinker === "Icy") weight += sc.weight * 3;
-    }
-    if(modifiers.has("Shark")){
-      weight += sc.weight * Number(sharkPerk);
-      if(bait === "Shark") weight += sc.weight * 1.25;
-      if(pet === "Megalodon") weight += sc.weight * 1.2;
-    }
-    if (modifiers.has("Mythic") && eman) {
-        weight += sc.weight * 1.15;
-    }
-    if (["Dark", "Light", "Whale"].includes(bait) && sc.weight < 400) {
+    if (modify){
+      if (modifiers.has("Hotspot")) {
+        if (bait === "Hotspot") weight += sc.weight * 1.5;
+        if (hook === "Hotspot") weight += sc.weight * 2;
+        if (pet === "Hermit") weight += sc.weight * 1.2;
+      }
+      if (modifiers.has("Spooky")) {
+        weight += sc.weight * Number(spookyPerk);
+        if (hook === "Phantom") weight += sc.weight * 2;
+        if (bait === "Spooky") weight += sc.weight * 1.15;
+      }
+      if(modifiers.has("Jerry")){
+        weight += sc.weight * Number(icyHookPerk);
+        if(sc.name === "Reindrake") weight += sc.weight * Number(drakePiperPerk);
+        if(bait === "Ice") weight += sc.weight * 1.15;
+        if(bait === "Frozen") weight += sc.weight * 1.35;
+        if(sinker === "Icy") weight += sc.weight * 3;
+      }
+      if(modifiers.has("Shark")){
+        weight += sc.weight * Number(sharkPerk);
+        if(bait === "Shark") weight += sc.weight * 1.25;
+        if(pet === "Megalodon") weight += sc.weight * 1.2;
+      }
+      if(modifiers.has("Squid") && squid) {
+        weight += sc.weight * 2;
+      }
+      if(modifiers.has("Common") && hook === "Common") {
         weight += sc.weight * 1.25;
+      }
+      if (modifiers.has("Mythic") && eman) {
+          weight += sc.weight * 1.15;
+      }
+      if (["Dark", "Light", "Whale"].includes(bait) && sc.weight < 400) {
+          weight += sc.weight * 1.25;
+      }
+      
     }
-
     return weight;
   }
 
-  function calculateLavaWeight(sc: SeaCreature): number{
+  function calculateLavaWeight(sc: SeaCreature, modify: boolean = true): number{
     let weight = sc.weight;
     const modifiers = new Set(sc.modifiers);
-
+    if(location !== "Lava" && location !== "Magma" && location !== "Hollows") return 0;
     if (
         (modifiers.has("Magma") && location !== "Magma") ||
         (modifiers.has("Hollows") && location !== "Hollows") ||
-        location !== "Lava"
+        (modifiers.has("Hotspot") && !hotspot) ||
+        (!modifiers.has("Hollows") && location === "Hollows") ||
+        (!modifiers.has("Magma") && location === "Magma")
     ) return 0;
-    if (modifiers.has("Hotspot")) {
-      if (bait === "Hotspot") weight += sc.weight * 1.5;
-      if (hook === "Hotspot") weight += sc.weight * 2;
-    }
-    if (modifiers.has("Mythic") && eman) {
-        weight += sc.weight * 1.15;
-    }
-    if (["Dark", "Light", "Whale"].includes(bait) && sc.weight < 400) {
+    if(modify){
+      if (modifiers.has("Hotspot")) {
+        if (bait === "Hotspot") weight += sc.weight * 1.5;
+        if (hook === "Hotspot") weight += sc.weight * 2;
+      }
+      if(modifiers.has("Common") && hook === "Common") {
         weight += sc.weight * 1.25;
+      }
+      if (modifiers.has("Mythic") && eman) {
+          weight += sc.weight * 1.15;
+      }
+      if (["Dark", "Light", "Whale"].includes(bait) && sc.weight < 400) {
+          weight += sc.weight * 1.25;
+      }
     }
     return weight;
   }
+
+  function getColor(sc: SeaCreature): string {
+    if (sc.modifiers.includes("Mythic")) {
+      return "rgb(255, 0, 170)";
+    } else if (sc.modifiers.includes("Legendary")) {
+      return "orange";
+    } else if (sc.modifiers.includes("Epic")) {
+      return "rgb(141, 0, 141)";
+    } else if (sc.modifiers.includes("Rare")) {
+      return "rgb(0, 162, 255)";
+    } else if (sc.modifiers.includes("Uncommon")) {
+      return "rgb(0, 255, 0)";
+    } else if (sc.modifiers.includes("Common")) {
+      return "white";
+    }
+     else {
+      return "red";
+    }
+  }
+
   return (
     <>
     <ThemeProvider theme={darkTheme}>
@@ -144,6 +184,7 @@ function App() {
               <MenuItem value={"Goblin"}>Goblin Holdout</MenuItem>
               <MenuItem value={"Bayou"}>Backwater Bayou</MenuItem>
               <MenuItem value={"Magma"}>Magma Fields</MenuItem>
+              <MenuItem value={"Quarry"}>Abandoned Quarry</MenuItem>
             </Select>
           </FormControl>
 
@@ -187,6 +228,7 @@ function App() {
               <MenuItem value={"None"}><em>None</em></MenuItem>
               <MenuItem value={"Hotspot"}>Hotspot Hook</MenuItem>
               <MenuItem value={"Phantom"}>Phantom Hook</MenuItem>
+              <MenuItem value={"Common"}>Common Hook</MenuItem>
             </Select>
           </FormControl>
 
@@ -243,8 +285,11 @@ function App() {
           <FormControlLabel control={<Checkbox />} onChange={(_event, checked) => {
                 setShark(checked);
               }}  label="Fishing Festival?" />
+          <FormControlLabel control={<Checkbox />} onChange={(_event, checked) => {
+                setSquid(checked);
+              }}  label="Squid Hat?" />
         </Grid2>
-        <Box hidden={location == "Lava" || location == "Magma"}>
+        <Box hidden={calculateTotalWaterWeights() == 0}>
           <Typography variant="h4" color="rgb(0, 162, 255)">Water</Typography>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -257,25 +302,43 @@ function App() {
               </TableHead>
               <TableBody>
                 {water
-                  .filter((sc: SeaCreature) => calculateWaterWeight(sc) > 0)
-                  .sort((a, b) => calculateWaterWeight(a) - calculateWaterWeight(b))
-                  .map((sc: SeaCreature) => (
-                    <TableRow
-                      key={sc.name}
-                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                    >
-                      <TableCell component="th" scope="row">
-                        {sc.name}
-                      </TableCell>
-                      <TableCell>{calculateWaterWeight(sc).toFixed(0)}</TableCell>
-                      <TableCell>{((calculateWaterWeight(sc) / calculateTotalWeights()) * 100).toFixed(3)}%</TableCell>
-                    </TableRow>
-                  ))}
+                  .map((sc: SeaCreature) => ({
+                    ...sc,
+                    waterWeight: calculateWaterWeight(sc),
+                  }))
+                  .filter(sc => sc.waterWeight > 0)
+                  .sort((a, b) => a.waterWeight - b.waterWeight)
+                  .map((sc) => {
+                    const totalWaterWeight = calculateTotalWaterWeights();
+                    const totalWaterWeightUnmodified = calculateTotalWaterWeights(false);
+                    const percentage = (sc.waterWeight / totalWaterWeight) * 100;
+                    const originalPercentage = (sc.weight / totalWaterWeightUnmodified) * 100;
+                    const percentageDiff = percentage - originalPercentage;
+                    const showBox = percentageDiff !== 0;
+
+                    return (
+                      <TableRow key={sc.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                        <TableCell component="th" scope="row" style={{ color: getColor(sc) }}>
+                          {sc.name}
+                        </TableCell>
+                        <TableCell>{sc.waterWeight.toFixed(0)}</TableCell>
+                        <TableCell>
+                          {percentage.toFixed(3)}%
+                          {showBox && (
+                            <Box color={percentageDiff >= 0 ? "green" : "red"}>
+                              ({percentageDiff > 0 ? "+" : ""}
+                              {percentageDiff.toFixed(3)}%)
+                            </Box>
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
               </TableBody>
             </Table>
           </TableContainer>
         </Box>
-        <Box hidden={location !== "Lava" && location !== "Magma"}>
+        <Box hidden={calculateTotalLavaWeights() == 0}>
           <Typography variant="h4" color="rgb(255, 0, 0)">Lava</Typography>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -287,20 +350,40 @@ function App() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {lava.filter((sc: SeaCreature) => calculateLavaWeight(sc) > 0)
-                  .sort((a, b) => calculateLavaWeight(a) - calculateLavaWeight(b)).map((sc: SeaCreature) => (calculateLavaWeight(sc) > 0) && (
-                  <TableRow
-                    key={sc.name}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      {sc.name}
-                    </TableCell>
-                    <TableCell>{calculateLavaWeight(sc).toFixed(0)}</TableCell>
-                    <TableCell>{((calculateLavaWeight(sc) / calculateTotalWeights()) * 100).toFixed(3)}%</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
+              {lava
+                .map((sc: SeaCreature) => ({
+                  ...sc,
+                  lavaWeight: calculateLavaWeight(sc),
+                }))
+                .filter(sc => sc.lavaWeight > 0)
+                .sort((a, b) => a.lavaWeight - b.lavaWeight)
+                .map((sc) => {
+                  const totalLavaWeight = calculateTotalLavaWeights();
+                  const totalLavaWeightUnmodified = calculateTotalLavaWeights(false);
+                  const percentage = (sc.lavaWeight / totalLavaWeight) * 100;
+                  const originalPercentage = (sc.weight / totalLavaWeightUnmodified) * 100;
+                  const percentageDiff = percentage - originalPercentage;
+                  const showBox = percentageDiff !== 0;
+
+                  return (
+                    <TableRow key={sc.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                      <TableCell component="th" scope="row" style={{ color: getColor(sc) }}>
+                        {sc.name}
+                      </TableCell>
+                      <TableCell>{sc.lavaWeight.toFixed(0)}</TableCell>
+                      <TableCell>
+                        {percentage.toFixed(3)}%
+                        {showBox && (
+                          <Box color={percentageDiff >= 0 ? "green" : "red"}>
+                            ({percentageDiff > 0 ? "+" : ""}
+                            {percentageDiff.toFixed(3)}%)
+                          </Box>
+                        )}
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+            </TableBody>
             </Table>
           </TableContainer>
         </Box>

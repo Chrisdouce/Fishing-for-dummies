@@ -2,72 +2,72 @@
     {
       "name": "Squid",
       "weight": 1200,
-      "modifiers": ["Squid"]
+      "modifiers": ["Squid", "Common"]
     },
     {
       "name": "Night Squid",
       "weight": 1100,
-      "modifiers": ["Squid", "Night"]
+      "modifiers": ["Squid", "Night", "Common"]
     },
     {
       "name": "Sea Walker",
       "weight": 800,
-      "modifiers": []
+      "modifiers": ["Common"]
     },
     {
       "name": "Sea Guardian",
       "weight": 600,
-      "modifiers": []
+      "modifiers": ["Common"]
     },
     {
       "name": "Sea Witch",
       "weight": 700,
-      "modifiers": []
+      "modifiers": ["Uncommon"]
     },
     {
       "name": "Sea Archer",
       "weight": 550,
-      "modifiers": []
+      "modifiers": ["Uncommon"]
     },
     {
       "name": "Rider of the Deep",
       "weight": 400,
-      "modifiers": []
+      "modifiers": ["Uncommon"]
     },
     {
       "name": "Catfish",
       "weight": 250,
-      "modifiers": []
+      "modifiers": ["Rare"]
     },
     {
         "name": "Carrot King",
         "weight": 160,
-        "modifiers": ["Carrot"]
+        "modifiers": ["Carrot", "Rare"]
     },
     {
       "name": "Sea Leech",
       "weight": 160,
-      "modifiers": []
+      "modifiers": ["Rare"]
     },
     {
       "name": "Guardian Defender",
       "weight": 130,
-      "modifiers": []
+      "modifiers": ["Epic"]
     },
     {
       "name": "Deep Sea Protector",
       "weight": 88,
-      "modifiers": []
+      "modifiers": ["Epic"]
     },
     {
       "name": "Water Hydra",
       "weight": 18,
-      "modifiers": []
+      "modifiers": ["Legendary"]
     },
     {
       "name": "Sea Emperor",
       "weight": 10,
-      "modifiers": []
+      "modifiers": ["Legendary"]
     },
     {
       "name": "Agarimoo",
@@ -77,32 +77,32 @@
     {
       "name": "Oasis Sheep",
       "weight": 700,
-      "modifiers": ["Oasis"]
+      "modifiers": ["Oasis", "Uncommon"]
     },
     {
       "name": "Oasis Rabbit",
       "weight": 300,
-      "modifiers": ["Oasis"]
+      "modifiers": ["Oasis", "Uncommon"]
     },
     {
       "name": "Water Worm",
       "weight": 300,
-      "modifiers": ["Goblin"]
+      "modifiers": ["Goblin", "Rare"]
     },
     {
       "name": "Poisoned Water Worm",
       "weight": 300,
-      "modifiers": ["Goblin"]
+      "modifiers": ["Goblin", "Rare"]
     },
     {
       "name": "Abyssal Miner",
       "weight": 90,
-      "modifiers": ["Hollows"]
+      "modifiers": ["Hollows", "Legendary"]
     },
     {
       "name": "Scarecrow",
       "weight": 1000,
-      "modifiers": ["Spooky"]
+      "modifiers": ["Spooky", "Common"]
     },
     {
       "name": "Nightmare",
@@ -112,42 +112,42 @@
     {
       "name": "Werewolf",
       "weight": 250,
-      "modifiers": ["Spooky"]
+      "modifiers": ["Spooky", "Epic"]
     },
     {
       "name": "Phantom Fisher",
       "weight": 90,
-      "modifiers": ["Spooky"]
+      "modifiers": ["Spooky", "Legendary"]
     },
     {
       "name": "Grim Reaper",
       "weight": 25,
-      "modifiers": ["Spooky"]
+      "modifiers": ["Spooky", "Legendary"]
     },
     {
       "name": "Frozen Steve",
       "weight": 1100,
-      "modifiers": ["Jerry"]
+      "modifiers": ["Jerry", "Common"]
     },
     {
-      "name": "Frosty the Snowman",
+      "name": "Frosty",
       "weight": 800,
-      "modifiers": ["Jerry"]
+      "modifiers": ["Jerry", "Common"]
     },
     {
       "name": "Grinch",
       "weight": 50,
-      "modifiers": ["Jerry"]
+      "modifiers": ["Jerry", "Uncommon"]
     },
     {
       "name": "Yeti",
       "weight": 30,
-      "modifiers": ["Jerry"]
+      "modifiers": ["Jerry", "Legendary"]
     },
     {
       "name": "Nutcracker",
       "weight": 60,
-      "modifiers": ["Jerry"]
+      "modifiers": ["Jerry", "Rare"]
     },
     {
       "name": "Reindrake",
@@ -162,32 +162,32 @@
     {
       "name": "Blue Shark",
       "weight": 550,
-      "modifiers": ["Shark"]
+      "modifiers": ["Shark", "Rare"]
     },
     {
       "name": "Tiger Shark",
       "weight": 300,
-      "modifiers": ["Shark"]
+      "modifiers": ["Shark", "Epic"]
     },
     {
       "name": "Great White Shark",
       "weight": 150,
-      "modifiers": ["Shark"]
+      "modifiers": ["Shark", "Legendary"]
     },
     {
       "name": "Frog Man",
       "weight": 1000,
-      "modifiers": ["Hotspot"]
+      "modifiers": ["Hotspot", "Common"]
     },
     {
       "name": "Snapping Turtle",
       "weight": 250,
-      "modifiers": ["Hotspot"]
+      "modifiers": ["Hotspot", "Rare"]
     },
     {
       "name": "Blue Ringed Octopus",
       "weight": 25,
-      "modifiers": ["Hotspot"]
+      "modifiers": ["Hotspot", "Legendary"]
     },
     {
       "name": "Wiki Tiki",
@@ -197,32 +197,52 @@
     {
       "name": "Trash Gobbler",
       "weight": 750,
-      "modifiers": ["Bayou"]
+      "modifiers": ["Bayou", "Common"]
     },
     {
       "name": "Dumpster Diver",
       "weight": 500,
-      "modifiers": ["Bayou"]
+      "modifiers": ["Bayou", "Uncommon"]
     },
     {
       "name": "Banshee",
       "weight": 300,
-      "modifiers": ["Bayou"]
+      "modifiers": ["Bayou", "Rare"]
     },
     {
       "name": "Bayou Sludge",
       "weight": 100,
-      "modifiers": ["Bayou"]
+      "modifiers": ["Bayou", "Epic"]
     },
     {
       "name": "Alligator",
       "weight": 50,
-      "modifiers": ["Bayou"]
+      "modifiers": ["Bayou", "Legendary"]
     },
     {
       "name": "Titanoboa",
       "weight": 10,
       "modifiers": ["Bayou", "Mythic"]
+    },
+    {
+      "name": "Mithril Grubber",
+      "weight": 385,
+      "modifiers": ["Quarry","Uncommon"]
+    },
+    {
+      "name": "Medium Mithril Grubber",
+      "weight": 210,
+      "modifiers": ["Quarry","Uncommon"]
+    },
+    {
+      "name": "Large Mithril Grubber",
+      "weight": 70,
+      "modifiers": ["Quarry","Uncommon"]
+    },
+    {
+      "name": "Bloated Mithril Grubber",
+      "weight": 35,
+      "modifiers": ["Quarry","Uncommon"]
     }
   ]
   
