@@ -72,7 +72,7 @@
     {
       "name": "Agarimoo",
       "weight": 950,
-      "modifiers": ["Chumcap"]
+      "modifiers": ["Chumcap", "Rare"]
     },
     {
       "name": "Oasis Sheep",
@@ -107,7 +107,7 @@
     {
       "name": "Nightmare",
       "weight": 550,
-      "modifiers": ["Spooky"]
+      "modifiers": ["Spooky", "Rare"]
     },
     {
       "name": "Werewolf",
@@ -157,7 +157,7 @@
     {
       "name": "Nurse Shark",
       "weight": 1100,
-      "modifiers": ["Shark"]
+      "modifiers": ["Shark", "Uncommon"]
     },
     {
       "name": "Blue Shark",
