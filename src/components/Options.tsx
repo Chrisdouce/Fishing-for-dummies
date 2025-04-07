@@ -1,5 +1,5 @@
 import { FormLabel, Grid2, FormControl, InputLabel, Select, SelectChangeEvent, MenuItem, FormControlLabel, Checkbox } from "@mui/material";
-import { JSX, useState } from "react";
+import { JSX } from "react";
 import type { FishingInfo } from "../types/types";
 
 interface FishingInfoProps {

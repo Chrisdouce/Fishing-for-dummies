@@ -5,14 +5,20 @@ import { FishingInfo, SeaCreature } from "../types/types";
 
 interface TableProps {
   fishingInfo: FishingInfo;
+  selectedModifiers: string[];
 }
 
-function WaterTable({ fishingInfo }: TableProps): JSX.Element {
+function WaterTable({ fishingInfo, selectedModifiers }: TableProps): JSX.Element {
   const {
     bait, location, hook, sinker, pet,
     eman, hotspot, chumcap, spooky, shark, squid, sharkArmor,
     spookyPerk, icyHookPerk, drakePiperPerk, sharkPerk
   } = fishingInfo;
+
+  const filteredCreatures = water.filter((sc: SeaCreature) =>
+    selectedModifiers.length === 0 ||
+    selectedModifiers.some(mod => sc.modifiers.includes(mod))
+  );
   
   function calculateTotalWaterWeights(modifiers = true): number {
       let totalWaterWeight = 0;
@@ -113,7 +119,7 @@ function WaterTable({ fishingInfo }: TableProps): JSX.Element {
               </TableRow>
             </TableHead>
             <TableBody>
-              {water
+              {filteredCreatures
                 .map((sc: SeaCreature) => ({
                   ...sc,
                   waterWeight: calculateWaterWeight(sc),

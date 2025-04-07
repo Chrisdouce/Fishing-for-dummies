@@ -30,6 +30,7 @@ function App(): JSX.Element {
     drakePiperPerk: 0,
     sharkPerk: 0,
   });
+  const [selectedModifiers, setSelectedModifiers] = useState<string[]>([]);
 
   return (
     <>
@@ -55,9 +56,9 @@ function App(): JSX.Element {
           Fishing For Dummies
         </Typography>
         <Options fishingInfo={fishingData} setFishingInfo={setFishingData} />
-        <Filter />
+        <Filter selectedModifiers={selectedModifiers} onChange={setSelectedModifiers}/>
         <hr style={{ margin: "20px 0", border: "1px solid rgba(255, 255, 255, 0.2)" }} />
-        <WaterTable fishingInfo={fishingData} />
+        <WaterTable fishingInfo={fishingData} selectedModifiers={selectedModifiers} />
         <LavaTable fishingInfo={fishingData} />
       </Container>
     </ThemeProvider>
