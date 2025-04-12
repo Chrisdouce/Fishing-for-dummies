@@ -5,19 +5,25 @@ import lava from '../assets/scc-data/lava-sc.json';
 
 interface TableProps {
   fishingInfo: FishingInfo;
+  selectedModifiers: string[];
 }
 
-function LavaTable({ fishingInfo }: TableProps): JSX.Element {
+function LavaTable({ fishingInfo, selectedModifiers }: TableProps): JSX.Element {
   const {
     bait, location, hook, sinker, pet,
     eman, hotspot, chumcap, spooky, shark, squid, sharkArmor,
     spookyPerk, icyHookPerk, drakePiperPerk, sharkPerk
   } = fishingInfo;
 
+  const filteredCreatures = lava.filter((sc: SeaCreature) =>
+    selectedModifiers.length === 0 ||
+    selectedModifiers.some(mod => sc.modifiers.includes(mod))
+  );
+
   function calculateTotalLavaWeights(modifiers: boolean = true): number {
       let totalLavaWeight = 0;
       lava.forEach(sc => {
-          totalLavaWeight += calculateLavaWeight(sc, modifiers);
+        totalLavaWeight += calculateLavaWeight(sc, modifiers);
       });
       return totalLavaWeight;
   }
@@ -83,7 +89,7 @@ function LavaTable({ fishingInfo }: TableProps): JSX.Element {
               </TableRow>
             </TableHead>
             <TableBody>
-            {lava
+            {filteredCreatures
               .map((sc: SeaCreature) => ({
                 ...sc,
                 lavaWeight: calculateLavaWeight(sc),
@@ -116,6 +122,27 @@ function LavaTable({ fishingInfo }: TableProps): JSX.Element {
                   </TableRow>
                 );
               })}
+              <TableRow sx={{backgroundColor: 'rgba(0, 204, 255, 0.1)', '&:last-child td, &:last-child th': { border: 0 }}}>
+                  <TableCell component="th" scope="row" style={{ color: "white" }}>
+                    <strong>Total</strong>
+                  </TableCell>
+                  <TableCell>
+                    <strong>
+                      {filteredCreatures
+                      .map(sc => calculateLavaWeight(sc))
+                      .reduce((acc, weight) => acc + weight, 0)
+                      .toFixed(0)}
+                    </strong>
+                  </TableCell>
+                  <TableCell>
+                    <strong>
+                      {(filteredCreatures
+                        .map(sc => calculateLavaWeight(sc))
+                        .reduce((acc, weight) => acc + weight, 0) / calculateTotalLavaWeights() * 100)
+                        .toFixed(3)}%
+                    </strong>
+                  </TableCell>
+              </TableRow>
           </TableBody>
           </Table>
         </TableContainer>

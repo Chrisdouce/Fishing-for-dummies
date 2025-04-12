@@ -1,7 +1,7 @@
 import { Box, Typography, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
 import { JSX } from "react";
-import water from '../assets/scc-data/water-sc.json';
 import { FishingInfo, SeaCreature } from "../types/types";
+import water from '../assets/scc-data/water-sc.json';
 
 interface TableProps {
   fishingInfo: FishingInfo;
@@ -152,6 +152,27 @@ function WaterTable({ fishingInfo, selectedModifiers }: TableProps): JSX.Element
                     </TableRow>
                   );
                 })}
+                <TableRow sx={{backgroundColor: 'rgba(0, 204, 255, 0.1)', '&:last-child td, &:last-child th': { border: 0 }}}>
+                  <TableCell component="th" scope="row" style={{ color: "white" }}>
+                    <strong>Total</strong>
+                  </TableCell>
+                  <TableCell>
+                    <strong>
+                      {filteredCreatures
+                      .map(sc => calculateWaterWeight(sc))
+                      .reduce((acc, weight) => acc + weight, 0)
+                      .toFixed(0)}
+                    </strong>
+                  </TableCell>
+                    <TableCell>
+                      <strong>
+                      {filteredCreatures
+                        .map(sc => (calculateWaterWeight(sc) / calculateTotalWaterWeights()) * 100)
+                        .reduce((acc, percentage) => acc + percentage, 0)
+                        .toFixed(3)}%
+                      </strong>
+                    </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </TableContainer>

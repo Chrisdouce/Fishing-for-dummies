@@ -59,7 +59,7 @@ function App(): JSX.Element {
         <Filter selectedModifiers={selectedModifiers} onChange={setSelectedModifiers}/>
         <hr style={{ margin: "20px 0", border: "1px solid rgba(255, 255, 255, 0.2)" }} />
         <WaterTable fishingInfo={fishingData} selectedModifiers={selectedModifiers} />
-        <LavaTable fishingInfo={fishingData} />
+        <LavaTable fishingInfo={fishingData} selectedModifiers={selectedModifiers}/>
       </Container>
     </ThemeProvider>
     </>
