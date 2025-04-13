@@ -6,18 +6,17 @@ import lava from '../assets/scc-data/lava-sc.json';
 interface TableProps {
   fishingInfo: FishingInfo;
   selectedModifiers: string[];
+  displayPercent: boolean;
 }
 
-function LavaTable({ fishingInfo, selectedModifiers }: TableProps): JSX.Element {
+function LavaTable({ fishingInfo, selectedModifiers, displayPercent }: TableProps): JSX.Element {
   const {
-    bait, location, hook, sinker, pet,
-    eman, hotspot, chumcap, spooky, shark, squid, sharkArmor,
-    spookyPerk, icyHookPerk, drakePiperPerk, sharkPerk
+    bait, location, hook, pet, eman, hotspot
   } = fishingInfo;
 
   const filteredCreatures = lava.filter((sc: SeaCreature) =>
     selectedModifiers.length === 0 ||
-    selectedModifiers.some(mod => sc.modifiers.includes(mod))
+    selectedModifiers.some(mod => sc.modifiers.includes(mod) || sc.name.includes(mod))
   );
 
   function calculateTotalLavaWeights(modifiers: boolean = true): number {
@@ -42,8 +41,9 @@ function LavaTable({ fishingInfo, selectedModifiers }: TableProps): JSX.Element 
       ) return 0;
       if(modify){
           if (modifiers.has("Hotspot")) {
-              if (bait === "Hotspot") weight += sc.weight * .5;
-              if (hook === "Hotspot") weight += sc.weight * 1;
+            if (bait === "Hotspot") weight += sc.weight * .5;
+            if (hook === "Hotspot") weight += sc.weight * 1;
+            if (pet === "Hermit") weight += sc.weight * .2;
           }
           if(modifiers.has("Common") && hook === "Common") {
               weight += sc.weight * .25;
@@ -78,7 +78,24 @@ function LavaTable({ fishingInfo, selectedModifiers }: TableProps): JSX.Element 
 
   return (
       <Box hidden={calculateTotalLavaWeights() == 0}>
-        <Typography variant="h4" color="rgb(255, 0, 0)">Lava</Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            pb: 1,
+            background: "linear-gradient(90deg, rgba(255,69,0,1) 0%, rgba(255,140,0,1) 50%, rgba(255,69,0,1) 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            animation: "gradient-animation 3s infinite",
+            "@keyframes gradient-animation": {
+              "0%": { backgroundPosition: "0% 50%" },
+              "50%": { backgroundPosition: "100% 50%" },
+              "100%": { backgroundPosition: "0% 50%" },
+            },
+            backgroundSize: "200% 200%",
+          }}
+        >
+          Lava
+        </Typography>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -111,7 +128,7 @@ function LavaTable({ fishingInfo, selectedModifiers }: TableProps): JSX.Element 
                     </TableCell>
                     <TableCell>{sc.lavaWeight.toFixed(0)}</TableCell>
                     <TableCell>
-                      {percentage.toFixed(3)}%
+                      {displayPercent ? `${percentage.toFixed(3)}%` : `1 / ${(100 / percentage).toFixed(1)}`}
                       {showBox && (
                         <Box color={percentageDiff >= 0 ? "green" : "red"}>
                           ({percentageDiff > 0 ? "+" : ""}
@@ -136,11 +153,15 @@ function LavaTable({ fishingInfo, selectedModifiers }: TableProps): JSX.Element 
                   </TableCell>
                   <TableCell>
                     <strong>
-                      {(filteredCreatures
-                        .map(sc => calculateLavaWeight(sc))
-                        .reduce((acc, weight) => acc + weight, 0) / calculateTotalLavaWeights() * 100)
-                        .toFixed(3)}%
-                    </strong>
+                        {displayPercent
+                        ? `${filteredCreatures
+                          .map(sc => (calculateLavaWeight(sc) / calculateTotalLavaWeights()) * 100)
+                          .reduce((acc, percentage) => acc + percentage, 0)
+                          .toFixed(3)}%`
+                        : `1 / ${(100 / filteredCreatures
+                          .map(sc => (calculateLavaWeight(sc) / calculateTotalLavaWeights()) * 100)
+                          .reduce((acc, percentage) => acc + percentage, 0)).toFixed(1)}`}
+                      </strong>
                   </TableCell>
               </TableRow>
           </TableBody>

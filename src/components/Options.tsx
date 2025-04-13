@@ -34,9 +34,9 @@ function FishingInfo({ fishingInfo, setFishingInfo }: FishingInfoProps): JSX.Ele
   
   return (
       <>
-      <FormLabel><strong>Basic fishing information:</strong></FormLabel>
+      <FormLabel sx={{ mb: 2, display: 'block' }}><strong>Basic fishing information:</strong></FormLabel>
       <Grid2 container spacing={2}>
-        <FormControl sx={{ m: 1, minWidth: 110 }}>
+        <FormControl sx={{ mr: 1, minWidth: 110 }}>
           <InputLabel id="simple-location">Location</InputLabel>
           <Select
             labelId="simple-location"
@@ -58,7 +58,7 @@ function FishingInfo({ fishingInfo, setFishingInfo }: FishingInfoProps): JSX.Ele
           </Select>
         </FormControl>
 
-        <FormControl sx={{ m: 1, minWidth: 80 }}>
+        <FormControl sx={{ mr: 1, minWidth: 80 }}>
           <InputLabel id="simple-bait">Bait</InputLabel>
           <Select
             labelId="simple-bait"
@@ -78,11 +78,11 @@ function FishingInfo({ fishingInfo, setFishingInfo }: FishingInfoProps): JSX.Ele
             <MenuItem value={"Spooky"}>Spooky Bait</MenuItem>
             <MenuItem value={"Shark"}>Shark Bait</MenuItem>
             <MenuItem value={"Hotspot"}>Hotspot Bait</MenuItem>
-            <MenuItem value={"Worm"}>Worm Bait</MenuItem>
+            {(fishingInfo.location == 'Hollows' || fishingInfo.location == 'Goblin') && <MenuItem value={"Worm"}>Worm Bait</MenuItem>}
           </Select>
         </FormControl>
 
-        <FormControl sx={{ m: 1, minWidth: 80 }}>
+        <FormControl sx={{ mr: 1, minWidth: 80 }}>
           <InputLabel id="simple-hook">Hook</InputLabel>
           <Select
             labelId="simple-hook"
@@ -99,7 +99,7 @@ function FishingInfo({ fishingInfo, setFishingInfo }: FishingInfoProps): JSX.Ele
           </Select>
         </FormControl>
 
-        <FormControl sx={{ m: 1, minWidth: 90 }}>
+        <FormControl sx={{ mr: 1, minWidth: 90 }}>
           <InputLabel id="simple-sinker">Sinker</InputLabel>
           <Select
             labelId="simple-sinker"
@@ -114,7 +114,7 @@ function FishingInfo({ fishingInfo, setFishingInfo }: FishingInfoProps): JSX.Ele
           </Select>
         </FormControl>
 
-        <FormControl sx={{ m: 1, minWidth: 80 }}>
+        <FormControl sx={{ mr: 1, minWidth: 80 }}>
           <InputLabel id="simple-pet">Pet</InputLabel>
           <Select
             labelId="simple-pet"
@@ -131,16 +131,20 @@ function FishingInfo({ fishingInfo, setFishingInfo }: FishingInfoProps): JSX.Ele
           </Select>
         </FormControl>
       </Grid2>
-      <FormLabel><strong>Are you fishing with:</strong></FormLabel>
-      <Grid2 container spacing={2}>
+      <FormLabel sx={{ mb: 1, display: 'block' }}><strong>Are you fishing with:</strong></FormLabel>
+      <Grid2 container spacing={1}>
         <FormControlLabel control={<Checkbox checked={fishingInfo.eman} onChange={handleCheckboxChange("eman")} />} label="Eman 9?"/>
-        <FormControlLabel control={<Checkbox checked={fishingInfo.hotspot} onChange={handleCheckboxChange("hotspot")} />} label="A Hotspot?" />
-        <FormControlLabel control={<Checkbox checked={fishingInfo.chumcap} onChange={handleCheckboxChange("chumcap")}/>}  label="A Chumcap?" />
-        <FormControlLabel control={<Checkbox checked={fishingInfo.spooky} onChange={handleCheckboxChange("spooky")}/>}  label="Spooky Festival?" />
-        <FormControlLabel control={<Checkbox checked={fishingInfo.shark} onChange={handleCheckboxChange("shark")}/>}  label="Fishing Festival?" />
-        <FormControlLabel control={<Checkbox checked={fishingInfo.squid} onChange={handleCheckboxChange("squid")}/>}  label="Squid Hat?" />
-        <FormControlLabel control={<Checkbox checked={fishingInfo.sharkArmor} onChange={handleCheckboxChange("sharkArmor")}/>}  label="4/4 Shark Armor?" />
         <FormControlLabel control={<Checkbox checked={fishingInfo.spookyPerk > 0} onChange={handlePerks()}/>} label="Max Perks?" />
+        <FormControlLabel control={<Checkbox checked={fishingInfo.hotspot} onChange={handleCheckboxChange("hotspot")} />} label="A Hotspot?" />
+        {(fishingInfo.location !== "Lava" && fishingInfo.location !== "Magma") && (
+          <>
+            <FormControlLabel control={<Checkbox checked={fishingInfo.chumcap} onChange={handleCheckboxChange("chumcap")}/>} label="A Chumcap?" />
+            <FormControlLabel control={<Checkbox checked={fishingInfo.spooky} onChange={handleCheckboxChange("spooky")}/>} label="Spooky Festival?" />
+            <FormControlLabel control={<Checkbox checked={fishingInfo.shark} onChange={handleCheckboxChange("shark")}/>} label="Fishing Festival?" />
+            <FormControlLabel control={<Checkbox checked={fishingInfo.squid} onChange={handleCheckboxChange("squid")}/>} label="Squid Hat?" />
+            <FormControlLabel control={<Checkbox checked={fishingInfo.sharkArmor} onChange={handleCheckboxChange("sharkArmor")}/>} label="4/4 Shark Armor?" />
+          </>
+        )}
       </Grid2>
       </>
   );

@@ -1,8 +1,8 @@
-import { Container, createTheme, CssBaseline, ThemeProvider, Typography } from "@mui/material"
+import { Box, Button, Container, createTheme, CssBaseline, ThemeProvider, Typography } from "@mui/material"
 import WaterTable from "./components/WaterTable";
 import LavaTable from "./components/LavaTable";
 import Options from "./components/Options";
-import Filter from "./components/Filter";
+import TableOptions from "./components/TableOptions";
 import { JSX, useState } from "react";
 
 const darkTheme = createTheme({
@@ -31,6 +31,7 @@ function App(): JSX.Element {
     sharkPerk: 0,
   });
   const [selectedModifiers, setSelectedModifiers] = useState<string[]>([]);
+  const [displayPercent, setDisplayPercent] = useState(true);
 
   return (
     <>
@@ -56,10 +57,16 @@ function App(): JSX.Element {
           Fishing For Dummies
         </Typography>
         <Options fishingInfo={fishingData} setFishingInfo={setFishingData} />
-        <Filter selectedModifiers={selectedModifiers} onChange={setSelectedModifiers}/>
         <hr style={{ margin: "20px 0", border: "1px solid rgba(255, 255, 255, 0.2)" }} />
-        <WaterTable fishingInfo={fishingData} selectedModifiers={selectedModifiers} />
-        <LavaTable fishingInfo={fishingData} selectedModifiers={selectedModifiers}/>
+        <TableOptions selectedModifiers={selectedModifiers} onChange={setSelectedModifiers}/>
+        <hr style={{ margin: "20px 0", border: "1px solid rgba(255, 255, 255, 0.2)" }} />
+        <Box sx={{ mt: 2, textAlign: 'left' }}>
+          <Button variant="outlined" size="small" onClick={() => setDisplayPercent(!displayPercent)}>
+            {displayPercent ? "%" : "1/x"}
+          </Button>
+        </Box>
+        <WaterTable fishingInfo={fishingData} selectedModifiers={selectedModifiers} displayPercent={displayPercent} />
+        <LavaTable fishingInfo={fishingData} selectedModifiers={selectedModifiers} displayPercent={displayPercent} />
       </Container>
     </ThemeProvider>
     </>

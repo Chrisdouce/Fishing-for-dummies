@@ -6,9 +6,10 @@ import water from '../assets/scc-data/water-sc.json';
 interface TableProps {
   fishingInfo: FishingInfo;
   selectedModifiers: string[];
+  displayPercent: boolean;
 }
 
-function WaterTable({ fishingInfo, selectedModifiers }: TableProps): JSX.Element {
+function WaterTable({ fishingInfo, selectedModifiers, displayPercent }: TableProps): JSX.Element {
   const {
     bait, location, hook, sinker, pet,
     eman, hotspot, chumcap, spooky, shark, squid, sharkArmor,
@@ -17,7 +18,7 @@ function WaterTable({ fishingInfo, selectedModifiers }: TableProps): JSX.Element
 
   const filteredCreatures = water.filter((sc: SeaCreature) =>
     selectedModifiers.length === 0 ||
-    selectedModifiers.some(mod => sc.modifiers.includes(mod))
+    selectedModifiers.some(mod => sc.modifiers.includes(mod) || sc.name.includes(mod))
   );
   
   function calculateTotalWaterWeights(modifiers = true): number {
@@ -31,7 +32,7 @@ function WaterTable({ fishingInfo, selectedModifiers }: TableProps): JSX.Element
   function calculateWaterWeight(sc: SeaCreature, modify: boolean = true): number{
       let weight = sc.weight;
       const modifiers = new Set(sc.modifiers);
-      if(bait === "Worm" && !sc.name.match(/Worm/) && location === "Hollows" || location === "Goblin") return 0;
+      if(bait === "Worm" && !sc.name.match(/Worm/) && (location === "Hollows" || location === "Goblin")) return 0;
       if (
           (modifiers.has("Oasis") && location !== "Oasis") ||
           (modifiers.has("Hollows") && location !== "Hollows") ||
@@ -108,7 +109,24 @@ function WaterTable({ fishingInfo, selectedModifiers }: TableProps): JSX.Element
   }
   return (
       <Box hidden={calculateTotalWaterWeights() == 0} sx={{ mt: 3 }}>
-        <Typography variant="h4" color="rgb(0, 162, 255)" sx={{pb: 1}}>Water</Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            pb: 1,
+            background: "linear-gradient(90deg, rgba(0,162,255,1) 0%, rgba(0,102,204,1) 50%, rgba(0,162,255,1) 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            animation: "gradient-animation 3s infinite",
+            "@keyframes gradient-animation": {
+              "0%": { backgroundPosition: "0% 50%" },
+              "50%": { backgroundPosition: "100% 50%" },
+              "100%": { backgroundPosition: "0% 50%" },
+            },
+            backgroundSize: "200% 200%",
+          }}
+        >
+          Water
+        </Typography>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -141,7 +159,7 @@ function WaterTable({ fishingInfo, selectedModifiers }: TableProps): JSX.Element
                       </TableCell>
                       <TableCell>{sc.waterWeight.toFixed(0)}</TableCell>
                       <TableCell>
-                        {percentage.toFixed(3)}%
+                        {displayPercent ? `${percentage.toFixed(3)}%` : `1 / ${(100 / percentage).toFixed(1)}`}
                         {showBox && (
                           <Box color={percentageDiff >= 0 ? "green" : "red"}>
                             ({percentageDiff > 0 ? "+" : ""}
@@ -165,12 +183,16 @@ function WaterTable({ fishingInfo, selectedModifiers }: TableProps): JSX.Element
                     </strong>
                   </TableCell>
                     <TableCell>
-                      <strong>
-                      {filteredCreatures
-                        .map(sc => (calculateWaterWeight(sc) / calculateTotalWaterWeights()) * 100)
-                        .reduce((acc, percentage) => acc + percentage, 0)
-                        .toFixed(3)}%
-                      </strong>
+                        <strong>
+                        {displayPercent
+                        ? `${filteredCreatures
+                          .map(sc => (calculateWaterWeight(sc) / calculateTotalWaterWeights()) * 100)
+                          .reduce((acc, percentage) => acc + percentage, 0)
+                          .toFixed(3)}%`
+                        : `1 / ${(100 / filteredCreatures
+                          .map(sc => (calculateWaterWeight(sc) / calculateTotalWaterWeights()) * 100)
+                          .reduce((acc, percentage) => acc + percentage, 0)).toFixed(1)}`}
+                        </strong>
                     </TableCell>
               </TableRow>
             </TableBody>
