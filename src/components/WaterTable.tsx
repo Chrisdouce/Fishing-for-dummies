@@ -1,20 +1,20 @@
-import { Box, Typography, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
-import { JSX } from "react";
+import { Box, Typography, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Button } from "@mui/material";
+import { JSX, useState } from "react";
 import { FishingInfo, SeaCreature } from "../types/types";
 import water from '../assets/scc-data/water-sc.json';
 
 interface TableProps {
   fishingInfo: FishingInfo;
   selectedModifiers: string[];
-  displayPercent: boolean;
 }
 
-function WaterTable({ fishingInfo, selectedModifiers, displayPercent }: TableProps): JSX.Element {
+function WaterTable({ fishingInfo, selectedModifiers }: TableProps): JSX.Element {
   const {
     bait, location, hook, sinker, pet,
     eman, hotspot, chumcap, spooky, shark, squid, sharkArmor,
     spookyPerk, icyHookPerk, drakePiperPerk, sharkPerk
   } = fishingInfo;
+  const [displayPercent, setDisplayPercent] = useState(true);
 
   const filteredCreatures = water.filter((sc: SeaCreature) =>
     selectedModifiers.length === 0 ||
@@ -108,25 +108,49 @@ function WaterTable({ fishingInfo, selectedModifiers, displayPercent }: TablePro
     }
   }
   return (
-      <Box hidden={calculateTotalWaterWeights() == 0} sx={{ mt: 3 }}>
-        <Typography
-          variant="h4"
-          sx={{
-            pb: 1,
-            background: "linear-gradient(90deg, rgba(0,162,255,1) 0%, rgba(0,102,204,1) 50%, rgba(0,162,255,1) 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            animation: "gradient-animation 3s infinite",
-            "@keyframes gradient-animation": {
-              "0%": { backgroundPosition: "0% 50%" },
-              "50%": { backgroundPosition: "100% 50%" },
-              "100%": { backgroundPosition: "0% 50%" },
-            },
-            backgroundSize: "200% 200%",
-          }}
-        >
-          Water
-        </Typography>
+      <Box hidden={calculateTotalWaterWeights() == 0} sx={{ mt: 2, mb: 4, textAlign: 'left' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Typography
+            variant="h4"
+            sx={{
+              pb: 1,
+              background: "linear-gradient(90deg, rgba(0,162,255,1) 0%, rgba(0,102,204,1) 50%, rgba(0,162,255,1) 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              animation: "gradient-animation 3s infinite",
+              "@keyframes gradient-animation": {
+          "0%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+          "100%": { backgroundPosition: "0% 50%" },
+              },
+              backgroundSize: "200% 200%",
+            }}
+          >
+            Water
+          </Typography>
+            <Button
+            variant="outlined"
+            size="large"
+            sx={{
+              mb: 1,
+              fontSize: "1.2rem",
+              textTransform: "uppercase",
+              width: "100px",
+              background: "linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet, red)", 
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundSize: "200% 100%",
+              animation: "chromaWave 5s linear infinite",
+              "@keyframes chromaWave": {
+              "0%": { backgroundPosition: "100% 50%" },
+              "100%": { backgroundPosition: "-100% 50%" },
+              },
+            }}
+            onClick={() => setDisplayPercent(!displayPercent)}
+            >
+            {displayPercent ? "%" : "1/x"}
+            </Button>
+        </Box>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>

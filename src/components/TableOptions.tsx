@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, Select, MenuItem, Checkbox, ListItemText, OutlinedInput, FormLabel, Box, Grid2, Button, FormControlLabel } from "@mui/material";
+import { FormControl, InputLabel, Select, MenuItem, Checkbox, ListItemText, OutlinedInput, FormLabel, Box, Grid2, Button, FormControlLabel, Autocomplete, TextField } from "@mui/material";
 import water from '../assets/scc-data/water-sc.json';
 import lava from '../assets/scc-data/lava-sc.json';
 
@@ -21,32 +21,27 @@ function Filter({ selectedModifiers, onChange}: FilterProps) {
       const options = filterType === "Rarity" ? rarity : filterType === "Type" ? type : names;
       return (
       <FormControl key={filterType} sx={{ mr: 1, minWidth: 200 }}>
-        <InputLabel id={`${filterType.toLowerCase()}-label`}>{filterType}</InputLabel>
-        <Select
-        labelId={`${filterType.toLowerCase()}-label`}
-        multiple
-        value={selectedModifiers.filter((modifier) => options.includes(modifier))}
-        onChange={(e) => {
-          const selected = e.target.value as string[];
-          const updatedModifiers = selectedModifiers.filter((modifier) => !options.includes(modifier)).concat(selected);
-          onChange(updatedModifiers);
+        <Autocomplete
+          multiple
+          options={options}
+          value={selectedModifiers.filter((modifier) => options.includes(modifier))}
+          onChange={(event, newValue) => {
+            const updatedModifiers = [
+              ...selectedModifiers.filter((modifier) => !options.includes(modifier)),
+              ...newValue,
+            ];
+            onChange(updatedModifiers);
           }}
-          input={<OutlinedInput label={filterType} />}
-          renderValue={(selected) => {
-          const maxLength = 20; // Maximum length of the string
-          const selectedString = selected.join(', ');
-          return selectedString.length > maxLength
-            ? `${selectedString.slice(0, maxLength)}...`
-            : selectedString;
-          }}
-          >
-        {options.map((option) => (
-          <MenuItem key={option} value={option}>
-          <Checkbox checked={selectedModifiers.includes(option)} />
-          <ListItemText primary={option} />
-          </MenuItem>
-        ))}
-        </Select>
+          sx={filterType === "Name" ? { width: 300 } : {}}
+          renderInput={(params) => <TextField {...params} label={filterType} variant="outlined" />}
+          disableCloseOnSelect
+          renderOption={(props, option, { selected }) => (
+            <li {...props}>
+              <Checkbox checked={selected} />
+              {option}
+            </li>
+          )}
+        />
       </FormControl>
       );
       })}

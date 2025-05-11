@@ -1,4 +1,5 @@
-import { Box, Button, Container, createTheme, CssBaseline, ThemeProvider, Typography } from "@mui/material"
+import { Box, Container, createTheme, CssBaseline, Divider, ThemeProvider, Typography } from "@mui/material"
+import Header from "./components/Header";
 import WaterTable from "./components/WaterTable";
 import LavaTable from "./components/LavaTable";
 import Options from "./components/Options";
@@ -31,46 +32,44 @@ function App(): JSX.Element {
     sharkPerk: 0,
   });
   const [selectedModifiers, setSelectedModifiers] = useState<string[]>([]);
-  const [displayPercent, setDisplayPercent] = useState(true);
 
   return (
-    <>
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <Container sx={{ mt: 4 }}>
-          <Typography
-          variant="h3"
-          sx={{
-            pb: "20px",
-            textTransform: "uppercase",
-            background: "linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet, red)", 
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundSize: "200% 100%",
-            animation: "chromaWave 5s linear infinite",
-            "@keyframes chromaWave": {
-              "0%": { backgroundPosition: "100% 50%" },
-              "100%": { backgroundPosition: "-100% 50%" },
-            },
-          }}
-        >
-          Fishing For Dummies
-        </Typography>
-        <Options fishingInfo={fishingData} setFishingInfo={setFishingData} />
-        <hr style={{ margin: "20px 0", border: "1px solid rgba(255, 255, 255, 0.2)" }} />
-        <TableOptions selectedModifiers={selectedModifiers} onChange={setSelectedModifiers}/>
-        <hr style={{ margin: "20px 0", border: "1px solid rgba(255, 255, 255, 0.2)" }} />
-        <Box sx={{ mt: 2, textAlign: 'left' }}>
-          <Button variant="outlined" size="small" onClick={() => setDisplayPercent(!displayPercent)}>
-            {displayPercent ? "%" : "1/x"}
-          </Button>
+      <Container 
+        maxWidth={false}  // Remove default max-width constraint
+        sx={{ 
+          mt: 4, 
+          mb: 4, 
+          display: 'flex', 
+          gap: 4,  // Adds consistent spacing between columns
+          px: 2,   // Horizontal padding for the entire container
+          width: '100%' 
+        }}
+      >
+        {/* Left Side */}
+        <Box sx={{ 
+          flex: 1, 
+          maxWidth: 500,  // Limit width of left panel
+          minWidth: 300   // Prevent from getting too narrow
+        }}>
+          <Header />
+          <Options fishingInfo={fishingData} setFishingInfo={setFishingData} />
+          <Divider sx={{ my: 3, borderColor: 'rgba(255, 255, 255, 0.2)' }} />
+          <TableOptions selectedModifiers={selectedModifiers} onChange={setSelectedModifiers} />
         </Box>
-        <WaterTable fishingInfo={fishingData} selectedModifiers={selectedModifiers} displayPercent={displayPercent} />
-        <LavaTable fishingInfo={fishingData} selectedModifiers={selectedModifiers} displayPercent={displayPercent} />
+        
+        <Box sx={{ 
+          flex: 2, 
+          minWidth: 200  // Ensure tables have enough space
+        }}>
+          <WaterTable fishingInfo={fishingData} selectedModifiers={selectedModifiers} />
+          <Box sx={{ mt: 3 }} />
+          <LavaTable fishingInfo={fishingData} selectedModifiers={selectedModifiers} />
+        </Box>
       </Container>
     </ThemeProvider>
-    </>
-  )
+  );
 }
 
 export default App

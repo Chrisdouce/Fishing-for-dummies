@@ -1,18 +1,18 @@
-import { Box, Typography, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
-import { JSX } from "react";
+import { Box, Typography, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Button } from "@mui/material";
+import { JSX, useState } from "react";
 import { FishingInfo, SeaCreature } from "../types/types";
 import lava from '../assets/scc-data/lava-sc.json';
 
 interface TableProps {
   fishingInfo: FishingInfo;
   selectedModifiers: string[];
-  displayPercent: boolean;
 }
 
-function LavaTable({ fishingInfo, selectedModifiers, displayPercent }: TableProps): JSX.Element {
+function LavaTable({ fishingInfo, selectedModifiers}: TableProps): JSX.Element {
   const {
     bait, location, hook, pet, eman, hotspot
   } = fishingInfo;
+  const [displayPercent, setDisplayPercent] = useState(true);
 
   const filteredCreatures = lava.filter((sc: SeaCreature) =>
     selectedModifiers.length === 0 ||
@@ -78,24 +78,47 @@ function LavaTable({ fishingInfo, selectedModifiers, displayPercent }: TableProp
 
   return (
       <Box hidden={calculateTotalLavaWeights() == 0}>
-        <Typography
-          variant="h4"
-          sx={{
-            pb: 1,
-            background: "linear-gradient(90deg, rgba(255,69,0,1) 0%, rgba(255,140,0,1) 50%, rgba(255,69,0,1) 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            animation: "gradient-animation 3s infinite",
-            "@keyframes gradient-animation": {
-              "0%": { backgroundPosition: "0% 50%" },
-              "50%": { backgroundPosition: "100% 50%" },
-              "100%": { backgroundPosition: "0% 50%" },
-            },
-            backgroundSize: "200% 200%",
-          }}
-        >
-          Lava
-        </Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+          <Typography
+            variant="h4"
+            sx={{
+              background: "linear-gradient(90deg, rgba(255,69,0,1) 0%, rgba(255,140,0,1) 50%, rgba(255,69,0,1) 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              animation: "gradient-animation 3s infinite",
+              "@keyframes gradient-animation": {
+          "0%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+          "100%": { backgroundPosition: "0% 50%" },
+              },
+              backgroundSize: "200% 200%",
+            }}
+          >
+            Lava
+          </Typography>
+          <Button
+            variant="outlined"
+            size="large"
+            sx={{
+              mb: 1,
+              fontSize: "1.2rem",
+              width: "100px",
+              textTransform: "uppercase",
+              background: "linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet, red)", 
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundSize: "200% 100%",
+              animation: "chromaWave 5s linear infinite",
+              "@keyframes chromaWave": {
+                "0%": { backgroundPosition: "100% 50%" },
+                "100%": { backgroundPosition: "-100% 50%" },
+              },
+            }}
+            onClick={() => setDisplayPercent(!displayPercent)}
+            >
+            {displayPercent ? "%" : "1/x"}
+          </Button>
+        </Box>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
