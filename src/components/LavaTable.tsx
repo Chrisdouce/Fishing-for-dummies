@@ -10,7 +10,7 @@ interface TableProps {
 
 function LavaTable({ fishingInfo, selectedModifiers}: TableProps): JSX.Element {
   const {
-    bait, location, hook, pet, eman, hotspot
+    bait, location, hook, pet, tracking, hotspot
   } = fishingInfo;
   const [displayPercent, setDisplayPercent] = useState(true);
 
@@ -48,8 +48,8 @@ function LavaTable({ fishingInfo, selectedModifiers}: TableProps): JSX.Element {
           if(modifiers.has("Common") && hook === "Common") {
               weight += sc.weight * .25;
           }
-          if (modifiers.has("Mythic") && eman) {
-              weight += sc.weight * .15;
+          if (modifiers.has("Elusive")) {
+              weight += sc.weight * tracking / 100;
           }
           if (["Dark", "Light", "Whale"].includes(bait) && sc.weight < 400) {
               weight += sc.weight * .25;

@@ -1,4 +1,4 @@
-import { Box, Container, createTheme, CssBaseline, Divider, ThemeProvider, Typography } from "@mui/material"
+import { Box, Container, createTheme, CssBaseline, Divider, ThemeProvider } from "@mui/material"
 import Header from "./components/Header";
 import WaterTable from "./components/WaterTable";
 import LavaTable from "./components/LavaTable";
@@ -37,32 +37,16 @@ function App(): JSX.Element {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <Container 
-        maxWidth={false}  // Remove default max-width constraint
-        sx={{ 
-          mt: 4, 
-          mb: 4, 
-          display: 'flex', 
-          gap: 4,  // Adds consistent spacing between columns
-          px: 2,   // Horizontal padding for the entire container
-          width: '100%' 
-        }}
+        maxWidth={false}
+        sx={{ mt: 4, mb: 4, display: 'flex', gap: 4, px: 2, width: '100%' }}
       >
-        {/* Left Side */}
-        <Box sx={{ 
-          flex: 1, 
-          maxWidth: 500,  // Limit width of left panel
-          minWidth: 300   // Prevent from getting too narrow
-        }}>
+        <Box sx={{ flex: 1, maxWidth: 500, minWidth: 300 }}>
           <Header />
           <Options fishingInfo={fishingData} setFishingInfo={setFishingData} />
           <Divider sx={{ my: 3, borderColor: 'rgba(255, 255, 255, 0.2)' }} />
           <TableOptions selectedModifiers={selectedModifiers} onChange={setSelectedModifiers} />
         </Box>
-        
-        <Box sx={{ 
-          flex: 2, 
-          minWidth: 200  // Ensure tables have enough space
-        }}>
+        <Box sx={{ flex: 2, minWidth: 200}}>
           <WaterTable fishingInfo={fishingData} selectedModifiers={selectedModifiers} />
           <Box sx={{ mt: 3 }} />
           <LavaTable fishingInfo={fishingData} selectedModifiers={selectedModifiers} />

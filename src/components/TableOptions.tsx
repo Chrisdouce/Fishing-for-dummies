@@ -3,7 +3,7 @@ import water from '../assets/scc-data/water-sc.json';
 import lava from '../assets/scc-data/lava-sc.json';
 
 const rarity = ["Common", "Uncommon", "Rare", "Epic", "Legendary", "Mythic"];
-const type = ["Spooky", "Shark", "Hotspot", "Jerry", "Worm", "Goblin", "Bayou", "Quarry", "Chumcap", "Squid", "Carrot", "Oasis"];
+const type = ["Spooky", "Shark", "Hotspot", "Jerry", "Worm", "Goblin", "Bayou", "Quarry", "Chumcap", "Squid", "Carrot", "Oasis", "Galatea"];
 const names = water.map((sc) => sc.name).concat(lava.map((sc) => sc.name)).filter((value, index, self) => self.indexOf(value) === index).sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
 
 

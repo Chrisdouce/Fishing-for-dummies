@@ -65,9 +65,9 @@
       "modifiers": ["Legendary"]
     },
     {
-      "name": "Sea Emperor",
+      "name": "The Loch Emperor",
       "weight": 10,
-      "modifiers": ["Legendary"]
+      "modifiers": ["Legendary", "Galatea"]
     },
     {
       "name": "Agarimoo",
@@ -152,7 +152,7 @@
     {
       "name": "Reindrake",
       "weight": 6,
-      "modifiers": ["Jerry", "Mythic"]
+      "modifiers": ["Jerry", "Mythic", "Elusive"]
     },
     {
       "name": "Nurse Shark",
@@ -192,7 +192,7 @@
     {
       "name": "Wiki Tiki",
       "weight": 5,
-      "modifiers": ["Hotspot", "Mythic"]
+      "modifiers": ["Hotspot", "Mythic", "Elusive"]
     },
     {
       "name": "Trash Gobbler",
@@ -222,27 +222,42 @@
     {
       "name": "Titanoboa",
       "weight": 10,
-      "modifiers": ["Bayou", "Mythic"]
+      "modifiers": ["Bayou", "Mythic", "Elusive"]
     },
     {
       "name": "Mithril Grubber",
       "weight": 385,
-      "modifiers": ["Quarry","Uncommon"]
+      "modifiers": ["Quarry", "Uncommon"]
     },
     {
       "name": "Medium Mithril Grubber",
       "weight": 210,
-      "modifiers": ["Quarry","Uncommon"]
+      "modifiers": ["Quarry", "Uncommon"]
     },
     {
       "name": "Large Mithril Grubber",
       "weight": 70,
-      "modifiers": ["Quarry","Uncommon"]
+      "modifiers": ["Quarry", "Uncommon"]
     },
     {
       "name": "Bloated Mithril Grubber",
       "weight": 35,
-      "modifiers": ["Quarry","Uncommon"]
+      "modifiers": ["Quarry", "Uncommon"]
+    },
+    {
+      "name": "Wetwing",
+      "weight": 2875,
+      "modifiers": ["Galatea", "Uncommon"]
+    },
+    {
+      "name": "Tadgang",
+      "weight": 1500,
+      "modifiers": ["Galatea", "Rare"]
+    },
+    {
+      "name": "Ent",
+      "weight": 35,
+      "modifiers": ["Galatea", "Epic"]
     }
   ]
   

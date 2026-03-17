@@ -10,7 +10,7 @@ export type FishingInfo = {
     hook: string,
     sinker: string,
     pet: string,
-    eman: boolean,
+    tracking: number,
     hotspot: boolean,
     chumcap: boolean,
     spooky: boolean,

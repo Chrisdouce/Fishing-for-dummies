@@ -11,7 +11,7 @@ interface TableProps {
 function WaterTable({ fishingInfo, selectedModifiers }: TableProps): JSX.Element {
   const {
     bait, location, hook, sinker, pet,
-    eman, hotspot, chumcap, spooky, shark, squid, sharkArmor,
+    tracking, hotspot, chumcap, spooky, shark, squid, sharkArmor,
     spookyPerk, icyHookPerk, drakePiperPerk, sharkPerk
   } = fishingInfo;
   const [displayPercent, setDisplayPercent] = useState(true);
@@ -40,6 +40,7 @@ function WaterTable({ fishingInfo, selectedModifiers }: TableProps): JSX.Element
           (modifiers.has("Bayou") && location !== "Bayou") ||
           (modifiers.has("Jerry") && location !== "Jerry") ||
           (modifiers.has("Quarry") && location !== "Quarry") ||
+          (modifiers.has("Galatea") && location !== "Galatea") ||
           (modifiers.has("Night") && bait !== "Dark") ||
           (modifiers.has("Carrot") && bait !== "Carrot") ||
           (modifiers.has("Chumcap") && !chumcap) ||
@@ -80,8 +81,8 @@ function WaterTable({ fishingInfo, selectedModifiers }: TableProps): JSX.Element
         if(modifiers.has("Common") && hook === "Common") {
             weight += sc.weight * .25;
         }
-        if (modifiers.has("Mythic") && eman) {
-            weight += sc.weight * .15;
+        if (modifiers.has("Elusive")) {
+            weight += sc.weight * tracking / 100;
         }
         if (["Dark", "Light", "Whale"].includes(bait) && sc.weight < 400) {
             weight += sc.weight * .25;

@@ -1,4 +1,4 @@
-import { FormLabel, Grid2, FormControl, InputLabel, Select, SelectChangeEvent, MenuItem, FormControlLabel, Checkbox } from "@mui/material";
+import { FormLabel, Grid2, FormControl, InputLabel, Select, SelectChangeEvent, MenuItem, FormControlLabel, Checkbox, Input, TextField } from "@mui/material";
 import { JSX } from "react";
 import type { FishingInfo } from "../types/types";
 
@@ -31,6 +31,13 @@ function FishingInfo({ fishingInfo, setFishingInfo }: FishingInfoProps): JSX.Ele
       sharkPerk: checked ? 5 : 0
     }));
   };
+
+  const handleInputChange = (field: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFishingInfo((prev: any) => ({
+      ...prev,
+      [field]: event.target.value ? Number(event.target.value) : 0
+    }));
+  };
   
   return (
       <>
@@ -55,6 +62,7 @@ function FishingInfo({ fishingInfo, setFishingInfo }: FishingInfoProps): JSX.Ele
             <MenuItem value={"Bayou"}>Backwater Bayou</MenuItem>
             <MenuItem value={"Magma"}>Magma Fields</MenuItem>
             <MenuItem value={"Quarry"}>Abandoned Quarry</MenuItem>
+            <MenuItem value={"Galatea"}><span style={{ color: 'hotpink' }}>(NEW!)</span> Galatea</MenuItem>
           </Select>
         </FormControl>
 
@@ -130,10 +138,27 @@ function FishingInfo({ fishingInfo, setFishingInfo }: FishingInfoProps): JSX.Ele
             <MenuItem value={"Megalodon"}>Megalodon pet</MenuItem>
           </Select>
         </FormControl>
+        <FormControl sx={{ mr: 1, minWidth: 120 }}>
+          <TextField
+            id="tracking-input"
+            label="Tracking"
+            type="number"
+            size="small"
+            variant="outlined"
+            value={fishingInfo.tracking ?? 0}
+            onChange={handleInputChange("tracking")}
+            sx={{ mr: 1, minWidth: 120 }}
+            InputLabelProps={{
+              sx: {
+                color: "hotpink",
+                "&.Mui-focused": { color: "hotpink" }
+              }
+            }}
+          />
+        </FormControl>
       </Grid2>
       <FormLabel sx={{ mb: 1, display: 'block' }}><strong>Are you fishing with:</strong></FormLabel>
       <Grid2 container spacing={1}>
-        <FormControlLabel control={<Checkbox checked={fishingInfo.eman} onChange={handleCheckboxChange("eman")} />} label="Eman 9?"/>
         <FormControlLabel control={<Checkbox checked={fishingInfo.spookyPerk > 0} onChange={handlePerks()}/>} label="Max Perks?" />
         <FormControlLabel control={<Checkbox checked={fishingInfo.hotspot} onChange={handleCheckboxChange("hotspot")} />} label="A Hotspot?" />
         {(fishingInfo.location !== "Lava" && fishingInfo.location !== "Magma") && (

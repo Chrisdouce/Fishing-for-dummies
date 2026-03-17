@@ -57,7 +57,7 @@
     {
       "name": "Lord Jawbus",
       "weight": 8,
-      "modifiers": ["Mythic"]
+      "modifiers": ["Mythic", "Elusive"]
     },
     {
       "name": "Fried Chicken",
@@ -77,7 +77,12 @@
     {
       "name": "Ragnarok",
       "weight": 5,
-      "modifiers": ["Hotspot", "Mythic"]
+      "modifiers": ["Hotspot", "Mythic", "Elusive"]
+    },
+    {
+      "name": "Stridersurfer",
+      "weight": 35,
+      "modifiers": ["Galatea", "Epic"]
     }
   ]
   
