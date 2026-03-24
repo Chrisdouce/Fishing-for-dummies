@@ -53,14 +53,6 @@ function WaterTable({ fishingInfo, selectedModifiers }: TableProps): JSX.Element
         if (pet === "Bat") add(.25);
     }
 
-    if (modifiers.has("Jerry")) {
-        add(icyHookPerk * .02);
-        if (sc.name === "Reindrake") add(drakePiperPerk * .02);
-        if (bait === "Ice") add(.15);
-        if (bait === "Frozen") add(.35);
-        if (sinker === "Icy") add(2);
-    }
-
     if (modifiers.has("Shark")) {
         add(sharkPerk * .02);
         if (bait === "Shark") add(.2);
