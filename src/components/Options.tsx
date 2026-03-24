@@ -1,4 +1,4 @@
-import { FormLabel, Grid2, FormControl, InputLabel, Select, SelectChangeEvent, MenuItem, FormControlLabel, Checkbox, Input, TextField } from "@mui/material";
+import { FormLabel, Grid2, FormControl, InputLabel, Select, SelectChangeEvent, MenuItem, FormControlLabel, Checkbox, TextField } from "@mui/material";
 import { JSX } from "react";
 import type { FishingInfo } from "../types/types";
 
@@ -148,10 +148,12 @@ function FishingInfo({ fishingInfo, setFishingInfo }: FishingInfoProps): JSX.Ele
             value={fishingInfo.tracking ?? 0}
             onChange={handleInputChange("tracking")}
             sx={{ mr: 1, minWidth: 120 }}
-            InputLabelProps={{
-              sx: {
-                color: "hotpink",
-                "&.Mui-focused": { color: "hotpink" }
+            slotProps={{
+              inputLabel: {
+                sx: {
+                  color: "hotpink",
+                  "&.Mui-focused": { color: "hotpink" }
+                }
               }
             }}
           />

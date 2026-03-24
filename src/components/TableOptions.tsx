@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, Select, MenuItem, Checkbox, ListItemText, OutlinedInput, FormLabel, Box, Grid2, Button, FormControlLabel, Autocomplete, TextField } from "@mui/material";
+import { FormControl, Checkbox, FormLabel, Box, Grid2, Button, Autocomplete, TextField } from "@mui/material";
 import water from '../assets/scc-data/water-sc.json';
 import lava from '../assets/scc-data/lava-sc.json';
 

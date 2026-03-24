@@ -29,67 +29,94 @@ function WaterTable({ fishingInfo, selectedModifiers }: TableProps): JSX.Element
       return totalWaterWeight;
   }
 
-  function calculateWaterWeight(sc: SeaCreature, modify: boolean = true): number{
-      let weight = sc.weight;
-      const modifiers = new Set(sc.modifiers);
-      if(bait === "Worm" && !sc.name.match(/Worm/) && (location === "Hollows" || location === "Goblin")) return 0;
-      if (
-          (modifiers.has("Oasis") && location !== "Oasis") ||
-          (modifiers.has("Hollows") && location !== "Hollows") ||
-          (modifiers.has("Goblin") && location !== "Goblin") ||
-          (modifiers.has("Bayou") && location !== "Bayou") ||
-          (modifiers.has("Jerry") && location !== "Jerry") ||
-          (modifiers.has("Quarry") && location !== "Quarry") ||
-          (modifiers.has("Galatea") && location !== "Galatea") ||
-          (modifiers.has("Night") && bait !== "Dark") ||
-          (modifiers.has("Carrot") && bait !== "Carrot") ||
-          (modifiers.has("Chumcap") && !chumcap) ||
-          (modifiers.has("Hotspot") && !hotspot) ||
-          (modifiers.has("Spooky") && !spooky) ||
-          (modifiers.has("Shark") && !shark) ||
-          location == "Lava" ||
-          location == "Magma"
-      ) return 0;
-      if (modify){
-        if (modifiers.has("Hotspot")) {
-            if (bait === "Hotspot") weight += sc.weight * .5;
-            if (hook === "Hotspot") weight += sc.weight * 1;
-            if (pet === "Hermit") weight += sc.weight * .2;
-        }
-        if (modifiers.has("Spooky")) {
-            weight += sc.weight * (spookyPerk * .02);
-            if (hook === "Phantom") weight += sc.weight * 1;
-            if (bait === "Spooky") weight += sc.weight * .15;
-            if (pet === "Bat") weight += sc.weight * .25;
-        }
-        if(modifiers.has("Jerry")){
-            weight += sc.weight * (icyHookPerk * .02);
-            if(sc.name === "Reindrake") weight += sc.weight * (drakePiperPerk * .02);
-            if(bait === "Ice") weight += sc.weight * .15;
-            if(bait === "Frozen") weight += sc.weight * .35;
-            if(sinker === "Icy") weight += sc.weight * 2;
-        }
-        if(modifiers.has("Shark")){
-            weight += sc.weight * (sharkPerk * .02);
-            if(bait === "Shark") weight += sc.weight * .2;
-            if(pet === "Megalodon") weight += sc.weight * .2;
-            if(sharkArmor) weight += sc.weight * .25;
-        }
-        if(modifiers.has("Squid") && squid) {
-            weight += sc.weight * 1;
-        }
-        if(modifiers.has("Common") && hook === "Common") {
-            weight += sc.weight * .25;
-        }
-        if (modifiers.has("Elusive")) {
-            weight += sc.weight * tracking / 100;
-        }
-        if (["Dark", "Light", "Whale"].includes(bait) && sc.weight < 400) {
-            weight += sc.weight * .25;
-        }
-      }
-      return weight;
+  function calculateWaterWeight(sc: SeaCreature, modify: boolean = true): number {
+    const base = sc.weight;
+    let weight = base;
+    const modifiers = new Set(sc.modifiers);
+
+    if (!isValidSpawn(sc, modifiers)) return 0;
+
+    if (!modify) return weight;
+
+    const add = (mult: number) => weight += base * mult;
+
+    if (modifiers.has("Hotspot")) {
+        if (bait === "Hotspot") add(.5);
+        if (hook === "Hotspot") add(1);
+        if (pet === "Hermit") add(.2);
+    }
+
+    if (modifiers.has("Spooky")) {
+        add(spookyPerk * .02);
+        if (hook === "Phantom") add(1);
+        if (bait === "Spooky") add(.15);
+        if (pet === "Bat") add(.25);
+    }
+
+    if (modifiers.has("Jerry")) {
+        add(icyHookPerk * .02);
+        if (sc.name === "Reindrake") add(drakePiperPerk * .02);
+        if (bait === "Ice") add(.15);
+        if (bait === "Frozen") add(.35);
+        if (sinker === "Icy") add(2);
+    }
+
+    if (modifiers.has("Shark")) {
+        add(sharkPerk * .02);
+        if (bait === "Shark") add(.2);
+        if (pet === "Megalodon") add(.2);
+        if (sharkArmor) add(.25);
+    }
+
+    if (modifiers.has("Squid") && squid) add(1);
+
+    if (modifiers.has("Common") && hook === "Common") add(.25);
+
+    if (modifiers.has("Elusive")) add(tracking / 100);
+
+    if (["Dark", "Light", "Whale"].includes(bait) && sc.weight < 400) {
+        add(.25);
+    }
+
+    return weight;
   }
+
+  function isValidSpawn(sc: SeaCreature, modifiers: Set<string>): boolean {
+    if (bait === "Worm" && !sc.name.includes("Worm") &&
+        (location === "Hollows" || location === "Goblin")) {
+        return false;
+    }
+
+    const locationRequirements: Record<string, string> = {
+        Oasis: "Oasis",
+        Hollows: "Hollows",
+        Goblin: "Goblin",
+        Bayou: "Bayou",
+        Jerry: "Jerry",
+        Quarry: "Quarry",
+        Galatea: "Galatea"
+    };
+
+    for (const [modifier, requiredLocation] of Object.entries(locationRequirements)) {
+        if (modifiers.has(modifier) && location !== requiredLocation) {
+            return false;
+        }
+    }
+
+    if (modifiers.has("Night") && bait !== "Dark") return false;
+    if (modifiers.has("Carrot") && bait !== "Carrot") return false;
+    if (modifiers.has("Chumcap") && !chumcap) return false;
+    if (modifiers.has("Hotspot") && !hotspot) return false;
+    if (modifiers.has("Spooky") && !spooky) return false;
+    if (modifiers.has("Shark") && !shark) return false;
+
+    if (!modifiers.has("Jerry") && location === "Jerry") return false;
+    if (!modifiers.has("Galatea") && location === "Galatea") return false;
+
+    if (location === "Lava" || location === "Magma") return false;
+
+    return true;
+}
 
   function getColor(sc: SeaCreature): string {
     if (sc.modifiers.includes("Mythic")) {

@@ -62,12 +62,12 @@
     {
       "name": "Water Hydra",
       "weight": 18,
-      "modifiers": ["Legendary"]
+      "modifiers": ["Legendary", "Elusive"]
     },
     {
       "name": "The Loch Emperor",
       "weight": 10,
-      "modifiers": ["Legendary", "Galatea"]
+      "modifiers": ["Legendary", "Galatea", "Elusive"]
     },
     {
       "name": "Agarimoo",
@@ -97,7 +97,7 @@
     {
       "name": "Abyssal Miner",
       "weight": 90,
-      "modifiers": ["Hollows", "Legendary"]
+      "modifiers": ["Hollows", "Legendary", "Elusive"]
     },
     {
       "name": "Scarecrow",
@@ -117,12 +117,12 @@
     {
       "name": "Phantom Fisher",
       "weight": 90,
-      "modifiers": ["Spooky", "Legendary"]
+      "modifiers": ["Spooky", "Legendary", "Elusive"]
     },
     {
       "name": "Grim Reaper",
       "weight": 25,
-      "modifiers": ["Spooky", "Legendary"]
+      "modifiers": ["Spooky", "Legendary", "Elusive"]
     },
     {
       "name": "Frozen Steve",
@@ -142,7 +142,7 @@
     {
       "name": "Yeti",
       "weight": 30,
-      "modifiers": ["Jerry", "Legendary"]
+      "modifiers": ["Jerry", "Legendary", "Elusive"]
     },
     {
       "name": "Nutcracker",
@@ -172,7 +172,7 @@
     {
       "name": "Great White Shark",
       "weight": 150,
-      "modifiers": ["Shark", "Legendary"]
+      "modifiers": ["Shark", "Legendary", "Elusive"]
     },
     {
       "name": "Frog Man",
@@ -187,7 +187,7 @@
     {
       "name": "Blue Ringed Octopus",
       "weight": 25,
-      "modifiers": ["Hotspot", "Legendary"]
+      "modifiers": ["Hotspot", "Legendary", "Elusive"]
     },
     {
       "name": "Wiki Tiki",
@@ -217,7 +217,7 @@
     {
       "name": "Alligator",
       "weight": 50,
-      "modifiers": ["Bayou", "Legendary"]
+      "modifiers": ["Bayou", "Legendary", "Elusive"]
     },
     {
       "name": "Titanoboa",
