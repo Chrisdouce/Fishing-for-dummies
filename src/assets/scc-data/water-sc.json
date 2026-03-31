@@ -126,27 +126,27 @@
     },
     {
       "name": "Frozen Steve",
-      "weight": 1100,
+      "weight": 5000,
       "modifiers": ["Jerry", "Common"]
     },
     {
       "name": "Frosty",
-      "weight": 800,
+      "weight": 2875,
       "modifiers": ["Jerry", "Common"]
     },
     {
       "name": "Grinch",
-      "weight": 50,
+      "weight": 1500,
       "modifiers": ["Jerry", "Uncommon"]
     },
     {
       "name": "Yeti",
-      "weight": 30,
+      "weight": 100,
       "modifiers": ["Jerry", "Legendary", "Elusive"]
     },
     {
       "name": "Nutcracker",
-      "weight": 60,
+      "weight": 500,
       "modifiers": ["Jerry", "Rare"]
     },
     {

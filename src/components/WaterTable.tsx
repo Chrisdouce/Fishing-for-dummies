@@ -10,9 +10,9 @@ interface TableProps {
 
 function WaterTable({ fishingInfo, selectedModifiers }: TableProps): JSX.Element {
   const {
-    bait, location, hook, sinker, pet,
+    bait, location, hook, pet,
     tracking, hotspot, chumcap, spooky, shark, squid, sharkArmor,
-    spookyPerk, icyHookPerk, drakePiperPerk, sharkPerk
+    spookyPerk, sharkPerk
   } = fishingInfo;
   const [displayPercent, setDisplayPercent] = useState(true);
 
@@ -102,7 +102,7 @@ function WaterTable({ fishingInfo, selectedModifiers }: TableProps): JSX.Element
     if (modifiers.has("Spooky") && !spooky) return false;
     if (modifiers.has("Shark") && !shark) return false;
 
-    if (!modifiers.has("Jerry") && location === "Jerry") return false;
+    if ((!modifiers.has("Jerry") && location === "Jerry") && !modifiers.has("Hotspot")) return false;
     if (!modifiers.has("Galatea") && location === "Galatea") return false;
 
     if (location === "Lava" || location === "Magma") return false;

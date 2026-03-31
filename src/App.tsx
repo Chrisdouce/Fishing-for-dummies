@@ -30,6 +30,7 @@ function App(): JSX.Element {
     icyHookPerk: 0,
     drakePiperPerk: 0,
     sharkPerk: 0,
+    tracking: 0,
   });
   const [selectedModifiers, setSelectedModifiers] = useState<string[]>([]);
 

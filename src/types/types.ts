@@ -18,7 +18,6 @@ export type FishingInfo = {
     squid: boolean,
     sharkArmor: boolean,
     spookyPerk: number,
-    icyHookPerk: number,
     drakePiperPerk: number,
     sharkPerk: number,
 }

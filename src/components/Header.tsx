@@ -3,9 +3,9 @@ import { Typography } from "@mui/material";
 function Header() {
   return (
     <Typography
-        variant="h3"
+        variant="h4"
         sx={{
-        pb: "20px",
+        pb: "15px",
         textTransform: "uppercase",
         background: "linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet, red)", 
         WebkitBackgroundClip: "text",

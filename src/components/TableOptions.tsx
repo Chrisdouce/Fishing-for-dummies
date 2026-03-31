@@ -6,7 +6,6 @@ const rarity = ["Common", "Uncommon", "Rare", "Epic", "Legendary", "Mythic"];
 const type = ["Spooky", "Shark", "Hotspot", "Jerry", "Worm", "Goblin", "Bayou", "Quarry", "Chumcap", "Squid", "Carrot", "Oasis", "Galatea"];
 const names = water.map((sc) => sc.name).concat(lava.map((sc) => sc.name)).filter((value, index, self) => self.indexOf(value) === index).sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
 
-
 interface FilterProps {
   selectedModifiers: string[];
   onChange: (newModifiers: string[]) => void;
