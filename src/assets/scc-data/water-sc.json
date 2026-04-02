@@ -245,6 +245,11 @@
       "modifiers": ["Quarry", "Uncommon"]
     },
     {
+      "name": "Bogged",
+      "weight": 1500,
+      "modifiers": ["Galatea", "Common"]
+    },
+    {
       "name": "Wetwing",
       "weight": 2875,
       "modifiers": ["Galatea", "Uncommon"]
@@ -256,7 +261,7 @@
     },
     {
       "name": "Ent",
-      "weight": 35,
+      "weight": 500,
       "modifiers": ["Galatea", "Epic"]
     },
     {
