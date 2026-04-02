@@ -246,7 +246,7 @@
     },
     {
       "name": "Bogged",
-      "weight": 1500,
+      "weight": 5000,
       "modifiers": ["Galatea", "Common"]
     },
     {
