@@ -258,6 +258,11 @@
       "name": "Ent",
       "weight": 35,
       "modifiers": ["Galatea", "Epic"]
+    },
+    {
+      "name": "Nessie",
+      "weight": 25,
+      "modifiers": ["Galatea", "Mythic", "Elusive"]
     }
   ]
   
