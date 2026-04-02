@@ -1,0 +1,25 @@
+name: Deploy Fishing For Dummies
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18' # or whatever version you're using
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run deploy script
+        run: npm run deploy
